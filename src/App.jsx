@@ -1,34 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
 import './App.css'
+import axios from 'axios'
 
 function App() {
-  const [count, setCount] = useState(0)
+ 
+  const [totalDataFromApi, setTotalDataFromApi] = useState([]);
+  const [selectedPage, setSelectedPage] = useState(0);
+  const [currentData, setCurrentData] = useState([])
+  
+  useEffect(()=>{
+     axios.get("https://jsonplaceholder.typicode.com/posts")
+     .then((res)=>{
+      setTotalDataFromApi(res.data)
+
+     })
+     .catch((err)=>{
+      console.log(err)
+
+     })
+     
+  
+  },[])
+ 
+
+  useEffect(()=>{
+    const data = totalDataFromApi.filter((pro,index)=> (index+1> selectedPage*10-10) && (index+1 <=(selectedPage*10)));
+    setCurrentData(data)
+
+  },[selectedPage])
+
+
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className='container'>
+      <h1 style={{textAlign:"center"}}>React Pagination</h1>
+
+
+    {currentData && currentData.map((prod,index)=>(
+      <div key={index} style={{display:"flex", gap:"10px", marginLeft:"300px" }}>
+       <span>{prod.id}</span> 
+       <span> {prod.title}</span>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    ))}
+
+  <div className='pagination__pageNO'>
+ {selectedPage > 1 &&  <div className='prev__button' onClick={()=>setSelectedPage(selectedPage-1)}>←</div>}
+  {new Array(10).fill("").map((e,index)=>(
+    <span className={selectedPage==index+1 ? "selectedPageHover":""} id='pagination__pageNO__box' key={index} onClick={()=>setSelectedPage(index+1)}>
+      {index+1}
+    </span>
+  ))}
+  {selectedPage <10 && <div className='next__button' onClick={()=>setSelectedPage(selectedPage+1)}>→</div>}
+  </div>
+    </div>
   )
 }
 

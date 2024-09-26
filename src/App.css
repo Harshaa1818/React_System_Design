@@ -1,9 +1,11 @@
 #pagination__pageNO__box{
-  text-align: center;
+ display: grid;
+ place-items: center;
   height:20px;
   width:20px;
   border: 1px solid black;
-  margin:5px
+  margin:5px;
+  border-radius: 5px;
 }
 .pagination__pageNO{
   width: 100vw;
@@ -11,6 +13,7 @@
   justify-content: center;
   cursor: pointer;
   margin-top: 200px;
+  
 }
 .prev__button{
 
@@ -20,5 +23,10 @@
 
 }
 .selectedPageHover{
-  background-color: aquamarine;
+  background-color: grey;
+}
+body{
+  background-color: black;
+  color: white;
+  margin: 0px;
 }

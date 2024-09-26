@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import '../App.css'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 function Pagination() {
  
@@ -27,13 +28,16 @@ function Pagination() {
     const data = totalDataFromApi.filter((pro,index)=> (index+1> selectedPage*10-10) && (index+1 <=(selectedPage*10)));
     setCurrentData(data)
 
-  },[selectedPage])
+  },[selectedPage]);
+
+  const navigate = useNavigate();
 
 
 
   return (
     <div className='container'>
-      <h1 style={{textAlign:"center"}}>React Pagination</h1>
+      <h1 style={{textAlign:"center"}}>React Pagination</h1> 
+      <button onClick={()=>navigate('/file-structure')}>See file structure project</button>
 
 
     {currentData && currentData.map((prod,index)=>(

@@ -5,9 +5,11 @@ import { useState } from "react"
 function FileStructure({data}){
     
     const [showFolder, setShowFolder] = useState(false)
+    const [openInput, setOpenInput] = useState(false)
    
     const handleAdd = (e)=>{
-        e.stopPropogation();
+        e.stopPropagation();
+        setOpenInput(!openInput)
 
     }
    
@@ -15,7 +17,12 @@ function FileStructure({data}){
     return (
         <div style={{paddingLeft:"30px"}}>
                 <div onClick={()=>setShowFolder(!showFolder)}>
-                📁{ data.name} <button style={{padding:"0"}} onClick={handleAdd}>Add 🗒️</button><button onClick={handleAdd} style={{padding:"0"}}>Add 📁</button>
+                📁{ data.name} 
+{/*                 
+                    <div>
+                    <button style={{padding:"0"}} onClick={handleAdd}>Add 🗒️</button><button onClick={handleAdd} style={{padding:"0"}}>Add 📁</button>
+                    </div> */}
+                
                 </div >
 
               { showFolder && 

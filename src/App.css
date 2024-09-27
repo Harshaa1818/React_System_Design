@@ -1,3 +1,21 @@
+[data-theme ='light']{
+  --bg-color: white;
+  --color: black;
+
+}
+[data-theme = 'dark']{
+  --bg-color: black;
+  --color: white;
+
+}
+
+body{
+  background-color: var(--bg-color);
+  color: var(--color);
+}
+
+
+
 #pagination__pageNO__box{
  display: grid;
  place-items: center;
@@ -24,9 +42,4 @@
 }
 .selectedPageHover{
   background-color: grey;
-}
-body{
-  background-color: black;
-  color: white;
-  margin: 0px;
 }

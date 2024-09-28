@@ -6,9 +6,10 @@ import { useNavigate } from 'react-router-dom';
 function Pagination() {
  
   const [totalDataFromApi, setTotalDataFromApi] = useState([]);
-  const [selectedPage, setSelectedPage] = useState(0);
+  const [selectedPage, setSelectedPage] = useState(1);
   const [currentData, setCurrentData] = useState([])
   
+
   useEffect(()=>{
      axios.get("https://jsonplaceholder.typicode.com/posts")
      .then((res)=>{
@@ -25,10 +26,14 @@ function Pagination() {
  
 
   useEffect(()=>{
-    const data = totalDataFromApi.filter((pro,index)=> (index+1> selectedPage*10-10) && (index+1 <=(selectedPage*10)));
-    setCurrentData(data)
+   
+    
+        let data = totalDataFromApi.filter((pro,index)=>(index+1 > selectedPage*10-10)  && (index+1 <= selectedPage*10));
+        setCurrentData(data)
+    
+   
 
-  },[selectedPage]);
+  },[selectedPage,totalDataFromApi]);
 
   const navigate = useNavigate();
 
@@ -36,8 +41,8 @@ function Pagination() {
 
   return (
     <div className='container'>
+      <button  style={{display:'flex'}}onClick={()=>navigate('/file-structure')}>See file structure project</button>
       <h1 style={{textAlign:"center"}}>React Pagination</h1> 
-      <button onClick={()=>navigate('/file-structure')}>See file structure project</button>
 
 
     {currentData && currentData.map((prod,index)=>(

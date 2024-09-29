@@ -5,6 +5,7 @@ import FileStructure from "./components/FileStructure";
 import { data } from "./Data";
 import { ThemeProvider } from "./Context/ThemeContext";
 import Navbar from "./components/Navbar";
+import OtpPage from "./components/OTPPage";
 
 
 function App(){
@@ -15,6 +16,7 @@ function App(){
       <Routes>
       <Route path="/" element={<Pagination/>}/>
       <Route path="/file-structure" element={<FileStructure data={data[0]}/>}/>
+      <Route path='otp-page' element={<OtpPage/>}/>
       </Routes>
       </ThemeProvider>
     </div>

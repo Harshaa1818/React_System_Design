@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 
   
@@ -6,6 +7,7 @@ function FileStructure({data}){
     
     const [showFolder, setShowFolder] = useState(false)
     const [openInput, setOpenInput] = useState(false)
+   
    
     const handleAdd = (e)=>{
         e.stopPropagation();
@@ -15,6 +17,8 @@ function FileStructure({data}){
    
       
     return (
+        <div>
+            
         <div style={{paddingLeft:"30px"}}>
                 <div onClick={()=>setShowFolder(!showFolder)}>
                 📁{ data.name} 
@@ -35,6 +39,7 @@ function FileStructure({data}){
               </div>
               )))}
           
+        </div>
         </div>
     )
 }

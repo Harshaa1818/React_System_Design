@@ -1,24 +1,29 @@
 import { Button, FormControl, FormControlLabel, FormLabel, Grid2, Radio, RadioGroup, TextField } from "@mui/material"
+import { useState } from "react"
 
 const GridPractice = () => {
+    const [currentOption, setCurrentOption] = useState("")
 
-    const handleChange = () =>{
+    const handleChange = (e) =>{
+        setCurrentOption(e.target.value)
+
+        console.log(currentOption)
 
     }
     return(
         <>
        
-        <FormControl row  justifyContent={'center'} >
+        <FormControl row   >
         
-          <Grid2 display='flex' alignItems="center"  gap={20} >
+          <Grid2 display='flex' alignItems="center" justifyContent='center'  gap={20} >
             <FormLabel>
             Loading Point
             </FormLabel>
           
             <RadioGroup row onChange={handleChange}>
                 
-                <FormControlLabel value={'option 1'} control={<Radio color="primary"/>} label='Yard'  ></FormControlLabel>
-                <FormControlLabel value={'option 2'} control={<Radio color="primary"/>} label='Bench'></FormControlLabel>
+                <FormControlLabel value={'Yard'} control={<Radio color="primary"/>} label='Yard'  ></FormControlLabel>
+                <FormControlLabel value={'Bench'} control={<Radio color="primary"/>} label='Bench'></FormControlLabel>
                 
 
             </RadioGroup>

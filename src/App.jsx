@@ -7,6 +7,7 @@ import { ThemeProvider } from "./Context/ThemeContext";
 import Navbar from "./components/Navbar";
 import OtpPage from "./components/OTPPage";
 import GridPractice from "./components/GridPractice";
+import DataFetch from "./components/DataFetch";
 
 
 function App(){
@@ -19,6 +20,7 @@ function App(){
       <Route path="/file-structure" element={<FileStructure data={data[0]}/>}/>
       <Route path='otp-page' element={<OtpPage/>}/>
       <Route path="/grid" element={<GridPractice/>}/>
+      <Route path="/tanstack" element={<DataFetch/>}/>
       </Routes>
       </ThemeProvider>
     </div>

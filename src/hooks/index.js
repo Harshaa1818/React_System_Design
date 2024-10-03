@@ -3,28 +3,26 @@ import axios from "axios";
 
 export const useSignup = () => {
     const mutation = useMutation({
-       mutationFn: async({firstname, lastname, email, password, confirmPassword})=>
+       mutationFn: async(data)=>
         {
-            console.log(firstname,
-                lastname,
-                email,
-                password,
-                confirmPassword);
             
-        //     const{data} = await axios.post('/tasks',
-        //     {
-        //         firstname,
-        //         lastname,
-        //         email,
-        //         password,
-        //         confirmPassword
-        //     })
-        // console.log(data)
-          
-
-    }
+            const{data} = await axios.post('/tasks',
+            {
+               data
+            })
+          }
 })
-
-
-    return mutation;
+return mutation;
 }
+
+const fetchData = async() => {
+    const data = await axios.get('/tasks');
+    return data;
+}
+export const useFetch = () => {
+   const response = useQuery({
+        queryKey: 'fetchData',
+        queryFn: fetchData()
+    })
+    return response
+} 

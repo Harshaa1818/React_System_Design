@@ -1,10 +1,10 @@
 import { Button, TextField, Typography } from "@mui/material"
-import { useState } from "react"
-import { useSignup } from "../hooks"
+import { useEffect, useState } from "react"
+import { useFetch, useSignup } from "../hooks"
 import { Form } from "react-router-dom"
 
 const DataFetch = () => {
-    const data =[
+    const constantData =[
         {
             id: 1,
             name: "fname",
@@ -37,10 +37,17 @@ const [email, setEmail] = useState('')
 const [password, setPassword] = useState('')
 const [confirmPassword, setConfirmPassowrd] = useState('')
 
-const {mutateAsync} = useSignup()
+const { mutateAsync } = useSignup()
+const { data, isError, isLoading} = useFetch();
+
+useEffect(()=>{
+    console.log(data)
+    console.log(isError)
+    console.log(isLoading)
+},[data, isError, isLoading])
 
     const handleChange = (e) => {
-        console.log(e.target.elements.name.value)
+        
         setFirstname(e.target.elements.fname)
         setLastname(e.target.elements.name.lname)
         setEmail(e.target.elements.name.em)
@@ -51,7 +58,7 @@ const {mutateAsync} = useSignup()
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-      // await mutateAsync({ firstname, lastname, email, password, confirmPassword })
+        await mutateAsync({ firstname, lastname, email, password, confirmPassword })
     }
 
     return (

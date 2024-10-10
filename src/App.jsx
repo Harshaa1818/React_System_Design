@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import OtpPage from "./components/OTPPage";
 import GridPractice from "./components/GridPractice";
 import DataFetch from "./components/DataFetch";
+import { TrafficSignal }  from './components/TrafficSignal'
 
 
 function App(){
@@ -21,6 +22,7 @@ function App(){
       <Route path='otp-page' element={<OtpPage/>}/>
       <Route path="/grid" element={<GridPractice/>}/>
       <Route path="/tanstack" element={<DataFetch/>}/>
+      <Route path="/signal" element={<TrafficSignal/>}/>
       </Routes>
       </ThemeProvider>
     </div>

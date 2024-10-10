@@ -3,12 +3,12 @@ import axios from "axios";
 
 export const useSignup = () => {
     const mutation = useMutation({
-       mutationFn: async(data)=>
+       mutationFn: async(input)=>
         {
             
             const{data} = await axios.post('/tasks',
             {
-               data
+            input
             })
           }
 })

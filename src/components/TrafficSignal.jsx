@@ -3,6 +3,20 @@ import React, { useEffect, useState } from 'react';
 export const TrafficSignal = () => {
     const [currSignal, setCurrSignal] = useState("green")
     const [timer,setTimer]=useState(10000)
+    const [time,setTime]=useState(10)
+
+    useEffect(()=>{
+       let interval =  setInterval(() => {
+            if(currSignal=='green')
+            setTime(time-1)
+
+           
+        }, 1000);
+
+        return ()=>{
+            clearInterval(interval)
+        }
+    },[time])
     
 
   useEffect(() => {
@@ -33,21 +47,24 @@ export const TrafficSignal = () => {
    
     return(
         <div>
-           {currSignal === "red" && (
+           {currSignal === "red" && ((
                 <div style={{display:'flex', justifyContent:'center'}}>
                     <div style={{width:'100px', height:'100px', backgroundColor:'red', borderRadius:'50%'}}></div>
                 </div>
-            )}
-            {currSignal === "yellow" && (
+            ) )}
+            
+            {currSignal === "yellow" ? (
                 <div style={{display:'flex', justifyContent:'center'}}>
                     <div style={{width:'100px', height:'100px', backgroundColor:'yellow', borderRadius:'50%'}}></div>
                 </div>
-            )}
-            {currSignal === "green" && (
+            ):""}
+            {currSignal === "green" ? (
                 <div style={{display:'flex', justifyContent:'center'}}>
                     <div style={{width:'100px', height:'100px', backgroundColor:'green', borderRadius:'50%'}}></div>
                 </div>
-            )}
+            ):""}
+            {currSignal=='green'&& <div style={{display:'flex', justifyContent:'center'}}>{time}</div> }
+            
            <div style={{display:'flex', justifyContent:'center', margin:'30px', borderRadius:'50%'}}> <button style={{borderRadius:'200px'}} type='submit' onClick={handleClick}>Make Signal green </button></div>
         
         </div>
